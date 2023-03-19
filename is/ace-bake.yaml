@@ -1,0 +1,31 @@
+apiVersion: appconnect.ibm.com/v1beta1
+kind: IntegrationServer
+metadata:
+  name: idp-ace-app
+  namespace: govtech
+spec:
+  enableMetrics: true
+  license:
+    accept: true
+    license: L-APEH-CJUCNR
+    use: CloudPakForIntegrationNonProduction
+  pod:
+    containers:
+      runtime:
+        image: quay.io/langley_millard_ibm/idp-pol
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: '1'
+            memory: 2Gi
+          requests:
+            cpu: '0.5'
+            memory: 2Gi
+  adminServerSecure: false
+  useCommonServices: true
+  designerFlowsOperationMode: disabled
+  service:
+    endpointType: http
+  version: 12.0.7.0-r4
+  logFormat: basic
+  replicas: 1
